@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block title %}{{ job.title }} · CareerMatch AI{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('index') }}">← Back to jobs</a>
+<div class="detail-layout">
+  <article class="panel detail-panel">
+    <span class="category">{{ job.category }}</span><h1 class="detail-title">{{ job.title }}</h1>
+    <div class="company large-company">{{ job.company }}</div><div class="location">⌖ {{ job.location }} · Posted {{ job.posted }}</div>
+    <hr><h3>About the role</h3><p class="body-copy">{{ job.description }}</p>
+    <h3>Skills and keywords</h3><div class="skill-row">{% for skill in job.skills.split(',') %}<span class="skill">{{ skill.strip() }}</span>{% endfor %}</div>
+  </article>
+  <aside class="panel side-panel"><div class="side-symbol">✦</div><h3>Check your fit</h3><p class="muted">See how your resume aligns with this role and identify skills to highlight.</p><a class="button primary full" href="{{ url_for('match') }}">Match my resume ↗</a><p class="tiny-note">Your resume is processed locally by this demo app and the uploaded file is removed after extraction.</p></aside>
+</div>
+{% endblock %}

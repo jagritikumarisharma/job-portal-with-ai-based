@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+{% block title %}AI Resume Match · CareerMatch AI{% endblock %}
+{% block content %}
+<div class="match-heading"><div class="eyebrow">SMART CAREER TOOLS</div><h1 class="page-title">Your skills. Their needs.<br><span>Find the connection.</span></h1><p class="muted">Add your resume to compare it with available jobs. You’ll receive a relevance score, matched skills, and missing keywords.</p></div>
+<div class="match-layout">
+  <section class="panel upload-panel">
+    <div class="panel-heading"><div class="step">01</div><div><h3>Provide your resume</h3><p class="muted">Upload a file or paste resume text.</p></div></div>
+    <form method="post" enctype="multipart/form-data">
+      <label class="upload-zone"><span class="upload-icon">↑</span><strong>Choose your resume file</strong><small>PDF, DOCX, or TXT · Maximum 5 MB</small><input type="file" name="resume" accept=".pdf,.docx,.txt"></label>
+      <div class="or-divider"><span>OR PASTE TEXT</span></div>
+      <textarea name="resume_text" rows="8" placeholder="Paste your resume text here — skills, education, projects, experience...">{{ resume_text }}</textarea>
+      <button class="button primary full" type="submit">Analyze & match jobs <span>↗</span></button>
+    </form>
+    <p class="privacy-note">🔒 Demo privacy: uploaded files are removed after text extraction. Avoid uploading sensitive personal information.</p>
+  </section>
+  <aside class="panel how-panel"><div class="side-symbol">✧</div><h3>How matching works</h3>
+    <div class="how-step"><span>1</span><div><strong>Text extraction</strong><p>Reads text from your resume file or pasted content.</p></div></div>
+    <div class="how-step"><span>2</span><div><strong>Semantic similarity</strong><p>TF-IDF and cosine similarity compare resume and job descriptions.</p></div></div>
+    <div class="how-step"><span>3</span><div><strong>Skill coverage</strong><p>Checks listed job skills and highlights matched and missing keywords.</p></div></div>
+    <div class="notice"><strong>Important</strong><p>This is a decision-support demo, not a hiring decision. Scores are approximate and should not be used as the sole basis for recruitment.</p></div>
+  </aside>
+</div>
+{% if results %}
+<section class="results-section">
+  <div class="section-head"><div><div class="eyebrow">YOUR RESULTS</div><h2>Best-matching roles</h2><p class="muted">Ranked by the demo matching score, highest first.</p></div><span class="count-pill">{{ results|length }} matches</span></div>
+  {% for item in results %}
+  <article class="result-card">
+    <div class="score-circle {% if item.score >= 70 %}high{% elif item.score >= 40 %}medium{% else %}low{% endif %}"><strong>{{ item.score }}%</strong><small>match</small></div>
+    <div class="result-main"><div class="result-title-row"><div><h3>{{ item.job.title }}</h3><p class="company">{{ item.job.company }} · {{ item.job.location }}</p></div><a class="text-link" href="{{ url_for('job_detail', job_id=item.job.id) }}">View role ↗</a></div>
+      <div class="match-label">Matched skills</div><div class="skill-row">{% for skill in item.matched %}<span class="skill good">{{ skill }}</span>{% else %}<span class="muted small">No exact required-skill matches found.</span>{% endfor %}</div>
+      {% if item.missing %}<div class="match-label missing-label">Skills to consider</div><div class="skill-row">{% for skill in item.missing %}<span class="skill missing">{{ skill }}</span>{% endfor %}</div>{% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{% elif request.method == "POST" and resume_text %}
+<p class="empty-state">No jobs are available to compare against yet. Add jobs from the Post a Job page.</p>
+{% endif %}
+{% endblock %}

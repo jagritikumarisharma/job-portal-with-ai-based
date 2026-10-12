@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block title %}Find Jobs · CareerMatch AI{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow"><span class="dot"></span> YOUR NEXT OPPORTUNITY STARTS HERE</div>
+  <h1>Find work that<br><span>fits your potential.</span></h1>
+  <p class="hero-copy">Discover opportunities and use AI-assisted resume matching to understand how your skills align with each role.</p>
+  <div class="hero-actions"><a class="button primary" href="{{ url_for('match') }}">Match my resume <span>↗</span></a><a class="button ghost" href="#jobs">Explore jobs</a></div>
+  <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+</section>
+<section id="jobs" class="section-head">
+  <div><div class="eyebrow">OPPORTUNITIES</div><h2>Explore open roles</h2><p class="muted">Find a role that matches your skills and interests.</p></div>
+  <span class="count-pill">{{ jobs|length }} roles</span>
+</section>
+<form class="searchbar" method="get" action="{{ url_for('index') }}">
+  <label class="search-input"><span>⌕</span><input name="q" value="{{ q }}" placeholder="Search job title, company, or skill"></label>
+  <select name="category"><option value="">All categories</option>{% for c in categories %}<option value="{{ c }}" {% if category == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select>
+  <button class="button primary" type="submit">Search</button>
+</form>
+<div class="job-grid">
+{% for job in jobs %}
+  <article class="job-card">
+    <div class="card-top"><div class="company-mark">{{ job.company[:1] }}</div><span class="category">{{ job.category }}</span></div>
+    <h3>{{ job.title }}</h3><div class="company">{{ job.company }}</div>
+    <div class="location">⌖ {{ job.location }}</div>
+    <p class="description">{{ job.description }}</p>
+    <div class="skill-row">{% for skill in job.skills.split(',')[:4] %}<span class="skill">{{ skill.strip() }}</span>{% endfor %}</div>
+    <div class="card-bottom"><span class="posted">Posted {{ job.posted }}</span><a href="{{ url_for('job_detail', job_id=job.id) }}">View role <span>↗</span></a></div>
+  </article>
+{% else %}
+  <div class="empty-state"><h3>No roles found</h3><p>Try another search or clear the category filter.</p><a href="{{ url_for('index') }}">Clear filters</a></div>
+{% endfor %}
+</div>
+<section class="match-banner"><div class="banner-icon">✧</div><div><h3>Not sure where you fit?</h3><p>Upload your resume and get a ranked list of roles with matched and missing skills.</p></div><a class="button light" href="{{ url_for('match') }}">Try resume matching ↗</a></section>
+{% endblock %}

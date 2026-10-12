@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block title %}Post a Job · CareerMatch AI{% endblock %}
+{% block content %}
+<div class="form-page">
+  <a class="back-link" href="{{ url_for('index') }}">← Back to jobs</a>
+  <div class="eyebrow">EMPLOYER SPACE</div><h1 class="page-title">Share an opportunity.</h1><p class="muted">Add a role to the demo job board. Required fields are marked with *.</p>
+  <form class="panel form-panel" method="post">
+    <div class="form-grid">
+      <label>Job title *<input name="title" required value="{{ form.get('title','') }}" placeholder="e.g. Software Developer Intern"></label>
+      <label>Company name *<input name="company" required value="{{ form.get('company','') }}" placeholder="e.g. Acme Technologies"></label>
+      <label>Location *<input name="location" required value="{{ form.get('location','') }}" placeholder="e.g. Delhi / Remote"></label>
+      <label>Category<select name="category"><option>Software Development</option><option>Data & Analytics</option><option>AI & Machine Learning</option><option>Design</option><option>Marketing</option><option>Other</option></select></label>
+      <label class="span-two">Required skills *<input name="skills" required value="{{ form.get('skills','') }}" placeholder="Python, SQL, Communication (comma separated)"></label>
+      <label class="span-two">Job description *<textarea name="description" rows="6" required placeholder="Describe the role, responsibilities, and ideal candidate...">{{ form.get('description','') }}</textarea></label>
+    </div>
+    <button class="button primary" type="submit">Publish job ↗</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 6,
+    "title": "web developer",
+    "company": "Tech solutions",
+    "location": "delhi",
+    "category": "Other",
+    "skills": "html,css,javascript,react,python",
+    "description": "aamjniujnhjnujikikjjnhnhnhnbjjlknbxyhsuj;juijuhbh",
+    "posted": "12 Oct 2026"
+  },
+  {
+    "id": 1,
+    "title": "Python Developer Intern",
+    "company": "NovaTech Solutions",
+    "location": "Gurugram, India",
+    "category": "Software Development",
+    "skills": "Python, Flask, SQL, Git, REST API",
+    "description": "Assist with backend development, build REST APIs, write readable Python code, work with SQL databases, and collaborate through Git. Students with project experience are encouraged to apply.",
+    "posted": "12 Oct 2026"
+  },
+  {
+    "id": 2,
+    "title": "Data Analyst Trainee",
+    "company": "InsightWorks",
+    "location": "Remote / India",
+    "category": "Data & Analytics",
+    "skills": "Python, SQL, Excel, Pandas, Data Visualization",
+    "description": "Clean and analyze datasets, prepare reports, create visualizations, and communicate insights. Familiarity with Python and SQL is useful.",
+    "posted": "12 Oct 2026"
+  },
+  {
+    "id": 3,
+    "title": "Frontend Developer Intern",
+    "company": "PixelCraft Studio",
+    "location": "Noida, India",
+    "category": "Software Development",
+    "skills": "HTML, CSS, JavaScript, React, Responsive Design",
+    "description": "Build accessible responsive interfaces, translate design concepts into web pages, debug UI issues, and collaborate with product and backend teams.",
+    "posted": "11 Oct 2026"
+  },
+  {
+    "id": 4,
+    "title": "Machine Learning Intern",
+    "company": "AIMinds Lab",
+    "location": "Hybrid / Delhi NCR",
+    "category": "AI & Machine Learning",
+    "skills": "Python, Machine Learning, Pandas, Scikit-learn, Statistics",
+    "description": "Prepare datasets, train baseline machine learning models, evaluate model performance, and document experiments. Academic projects are welcome.",
+    "posted": "10 Oct 2026"
+  },
+  {
+    "id": 5,
+    "title": "Java Software Trainee",
+    "company": "CoreByte Systems",
+    "location": "Jaipur, India",
+    "category": "Software Development",
+    "skills": "Java, OOP, SQL, Data Structures, Git",
+    "description": "Work with the engineering team on Java applications, write unit tests, debug issues, and learn software development best practices.",
+    "posted": "09 Oct 2026"
+  }
+]
