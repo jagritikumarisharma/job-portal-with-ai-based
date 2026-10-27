@@ -88,7 +88,7 @@ def match():
             else:
                 filename = secure_filename(uploaded.filename)
                 stamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
-                path = os.path.join(app.config["UPLOAD_FOLDER"], stamp + "_" + filename)
+                path = os.path.join("/tmp", stamp + "_" + filename)
                 uploaded.save(path)
                 try:
                     resume_text = extract_text_from_file(path, filename)
